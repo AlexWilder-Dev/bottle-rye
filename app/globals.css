@@ -3,25 +3,94 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bone: #F5F0E8;
+  --charcoal: #1A1815;
+  --ink: #0D0B09;
+  --burgundy: #722F37;
+  --terracotta: #C4705A;
+  --ochre: #D4A857;
+  --slate: #2E2A28;
+  --smoke: #8A8580;
+  --cream: #FDFBF7;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  overscroll-behavior: none;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--charcoal);
+  color: var(--bone);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Elegant selection */
+::selection {
+  background: var(--burgundy);
+  color: var(--cream);
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 1px solid var(--ochre);
+  outline-offset: 3px;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Leader dots for menu items */
+  .leader-dots {
+    flex: 1;
+    border-bottom: 1px dotted currentColor;
+    margin: 0 0.5rem;
+    margin-bottom: 0.3rem;
+    opacity: 0.3;
+  }
+
+  /* Vignette overlay */
+  .vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(13, 11, 9, 0.5) 100%
+    );
+  }
+
+  /* Slide indicator dot */
+  .slide-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.3;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .slide-dot.active {
+    opacity: 1;
+    transform: scale(1.5);
   }
 }
