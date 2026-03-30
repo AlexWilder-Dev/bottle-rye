@@ -64,7 +64,7 @@ export default function Navigation({
           aria-label="Bottle + Rye — return to start"
         >
           <Image
-            src="/logo.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo.png`}
             alt="Bottle + Rye"
             width={140}
             height={20}
